@@ -18,7 +18,7 @@ import org.transportes.vemTransportes.service.exceptions.ResourceNotFoundExcepti
 public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	@Transactional(readOnly = true)
 	public List<Usuario> findAll() {
 		return usuarioRepository.findAll();
@@ -50,10 +50,10 @@ public class UsuarioService {
 	public Usuario update(Usuario entity) {
 		Optional<Usuario> obj = usuarioRepository.findById(entity.getId());
 
-		Usuario usuario = obj.orElseThrow(() -> new ResourceNotFoundException("Id não encontrado"));
-		usuario = usuarioRepository.save(usuario);
+		Usuario tema = obj.orElseThrow(() -> new ResourceNotFoundException("Id não encontrado"));
+		tema = usuarioRepository.save(tema);
 
-		return usuario;
+		return tema;
 	}
 
 	public void delete(Long id) {

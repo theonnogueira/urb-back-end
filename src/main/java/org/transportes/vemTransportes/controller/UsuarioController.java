@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.transportes.vemTransportes.model.Usuario;
+import org.transportes.vemTransportes.repository.UsuarioRepository;
 import org.transportes.vemTransportes.service.UsuarioService;
 
 @RestController
@@ -28,6 +30,9 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService service;
+
+	@Autowired
+	private UsuarioRepository repository;
 
 	@GetMapping
 	public ResponseEntity<List<Usuario>> getAll() {
@@ -48,8 +53,8 @@ public class UsuarioController {
 	}
 
 	@PutMapping
-	public ResponseEntity<Usuario> put(@Valid @RequestBody Usuario usuario) {
-		return ResponseEntity.ok().body(service.update(usuario));
+	public ResponseEntity<Usuario> put(@RequestBody Usuario usuario) {
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(usuario));
 	}
 
 	@DeleteMapping(value = "/{id}")

@@ -41,6 +41,8 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/usuarios/{id}").permitAll()
 			.antMatchers("/cartoes").permitAll()
 			.antMatchers("/usuarios/{id}").permitAll()
+			.antMatchers("/cartoes/nome/{nome}").permitAll()
+			.antMatchers("/cartoes/{id}").permitAll()
 			
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.anyRequest().authenticated().and().httpBasic()
